@@ -1,0 +1,10 @@
+MISE A JOUR DU SITE DE MARIAGE
+
+Téléversez à la racine du dépôt GitHub Pages (hotcell/mariage1) ces trois fichiers :
+- index.html (remplace l'ancien)
+- photo-maries.png
+- image-apercu.jpg (image d'aperçu WhatsApp 1200x630)
+
+Conservez aussi les fichiers style.css et script.js déjà présents dans le dépôt.
+Après le commit, attendez que GitHub Pages publie la mise à jour.
+L'aperçu WhatsApp peut rester en cache : envoyez le lien avec un paramètre nouveau, par exemple https://hotcell.github.io/mariage1/?v=2, ou testez dans une nouvelle conversation.
