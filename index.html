@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f5ef">
+  <meta name="description" content="Invitation au mariage de Mohamed Moustapha Tounkara et Hawa Traoré, le 14 mars 2027 à Kalaban Coura.">
+  <title>Mohamed & Hawa — Notre mariage</title>
+  <!-- Aperçu lors du partage (WhatsApp, Facebook…) : un seul jeu de balises. -->
+  <meta property="og:title" content="Mariage de Mohamed Moustapha & Hawa">
+  <meta property="og:description" content="Rejoignez-nous pour célébrer notre mariage ! Retrouvez toutes les informations, le programme et la confirmation de présence.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mohtounkara.github.io/mariage-mohamed-hawa/">
+  <meta property="og:image" content="https://mohtounkara.github.io/mariage-mohamed-hawa/apercu.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Champ anti-spam invisible et message d'erreur du formulaire */
+    .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .thank-you.is-error { border-color: #e8a0a0; }
+    /* QR code personnel affiché après une confirmation */
+    .qr-box { margin-top: 1.25rem; text-align: center; }
+    .qr-box p { margin: 0 0 1rem; }
+    .qr-canvas { display: block; margin: 0 auto 1rem; max-width: 100%; height: auto; border-radius: 12px; background: #fff; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#accueil" aria-label="Accueil">M <span>&</span> H</a>
+    <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+    <nav class="nav-links" aria-label="Navigation principale">
+      <a href="#histoire">Notre histoire</a>
+      <a href="#infos">Informations</a>
+      <a href="#galerie">Galerie</a>
+      <a class="nav-rsvp" href="#rsvp">Confirmer ma présence</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="hero-overlay"></div>
+      <div class="hero-content fade-in">
+        <p class="eyebrow light">AVEC LA BÉNÉDICTION DE NOS FAMILLES</p>
+        <p class="invite-line">Nous avons le bonheur de vous inviter au mariage de</p>
+        <h1><span>Mohamed Moustapha</span><i>&</i><span>Hawa</span></h1>
+        <p class="hero-date">DIMANCHE <span>·</span> 14 MARS 2027</p>
+        <div class="gold-rule"></div>
+        <p class="hero-place">Kalaban Coura, Bamako</p>
+        <a class="button button-gold" href="#infos">Découvrir la journée <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-note">UN JOUR • DEUX CŒURS • UNE HISTOIRE</div>
+    </section>
+
+    <section class="countdown-section section-pad">
+      <p class="eyebrow">LE GRAND JOUR APPROCHE</p>
+      <h2>Le compte à rebours</h2>
+      <p class="section-intro">Nous avons hâte de partager ce moment précieux avec vous.</p>
+      <div class="countdown" aria-label="Compte à rebours avant le mariage">
+        <div><strong id="days">000</strong><span>Jours</span></div>
+        <div><strong id="hours">00</strong><span>Heures</span></div>
+        <div><strong id="minutes">00</strong><span>Minutes</span></div>
+        <div><strong id="seconds">00</strong><span>Secondes</span></div>
+      </div>
+      <p class="countdown-message" id="countdown-message" aria-live="polite"></p>
+    </section>
+
+    <section class="story section-pad" id="histoire">
+      <div class="story-image image-frame">
+        <img src="photo-maries.png" alt="Mohamed Moustapha et Hawa en tenue traditionnelle bleue et dorée" loading="lazy">
+        <span class="image-caption">Un nouveau chapitre commence</span>
+      </div>
+      <div class="story-copy">
+        <p class="eyebrow">NOTRE HISTOIRE</p>
+        <h2>Deux chemins,<br><em>une belle destinée.</em></h2>
+        <p>Il y a des rencontres qui changent une vie et des instants qui deviennent des souvenirs précieux. Aujourd’hui, nous sommes heureux d’ouvrir ensemble un nouveau chapitre.</p>
+        <p>Entourés de nos familles et de nos amis, nous aimerions célébrer cette union avec vous, dans la joie, l’amour et le partage.</p>
+        <div class="signature">Mohamed & Hawa</div>
+      </div>
+    </section>
+
+    <section class="details section-pad" id="infos">
+      <div class="section-heading">
+        <p class="eyebrow">NOTEZ LA DATE</p>
+        <h2>Les informations pratiques</h2>
+        <p class="section-intro">Toutes les informations pour nous rejoindre et célébrer ensemble.</p>
+      </div>
+      <div class="detail-grid">
+        <article class="detail-card">
+          <div class="detail-icon" aria-hidden="true">♡</div>
+          <p class="eyebrow">LE RENDEZ-VOUS</p>
+          <h3>Dimanche 14 mars 2027</h3>
+          <p>Nous serons ravis de vous accueillir pour cette journée unique.</p>
+          <div class="detail-line"></div>
+          <p><strong>Lieu :</strong> Kalaban Coura, non loin de l’école publique, Bamako.</p>
+          <a class="text-link" href="https://www.google.com/maps/search/?api=1&query=H2P4%2B3PQ%20Bamako" target="_blank" rel="noopener noreferrer">Voir sur Google Maps ↗</a>
+        </article>
+        <article class="detail-card">
+          <div class="detail-icon" aria-hidden="true">⌖</div>
+          <p class="eyebrow">LE PROGRAMME</p>
+          <h3>Une journée à partager</h3>
+          <div class="schedule">
+            <div class="schedule-item"><span class="schedule-symbol">✧</span><div><strong>Cérémonie</strong><small>Horaire à confirmer</small></div></div>
+            <div class="schedule-item"><span class="schedule-symbol">❀</span><div><strong>Accueil & photos</strong><small>Un moment pour se retrouver</small></div></div>
+            <div class="schedule-item"><span class="schedule-symbol">♡</span><div><strong>Réception & festivités</strong><small>Joie, partage et souvenirs</small></div></div>
+          </div>
+          <p class="small-note">Les horaires détaillés seront communiqués prochainement.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="rsvp-section section-pad" id="rsvp">
+      <div class="rsvp-decor decor-one"></div><div class="rsvp-decor decor-two"></div>
+      <div class="rsvp-inner">
+        <p class="eyebrow light">VOTRE PRÉSENCE EST UN CADEAU</p>
+        <h2>Comptez-vous parmi nous ?</h2>
+        <p class="section-intro light-intro">Merci de nous confirmer votre présence. Votre réponse nous aidera à préparer cette journée avec soin.</p>
+        <form id="rsvp-form">
+          <label for="fullname">Votre nom complet</label>
+          <input id="fullname" name="fullname" type="text" placeholder="Ex. Aïssata Diallo" autocomplete="name" required maxlength="100">
+
+          <label for="telephone">Votre numéro de téléphone</label>
+          <input id="telephone" name="telephone" type="tel" placeholder="Ex. +223 70 00 00 00" autocomplete="tel" inputmode="tel" required maxlength="25" pattern="[0-9+()\s.\-]{8,25}">
+
+          <fieldset>
+            <legend>Votre réponse</legend>
+            <label class="radio-option"><input type="radio" name="attendance" value="Oui, je serai présent(e)" required><span>Oui, avec plaisir !</span></label>
+            <label class="radio-option"><input type="radio" name="attendance" value="Désolé(e), je ne pourrai pas venir"><span>Je ne pourrai malheureusement pas venir</span></label>
+          </fieldset>
+
+          <label for="message">Un petit mot pour les mariés <span class="optional">(facultatif)</span></label>
+          <textarea id="message" name="message" rows="3" placeholder="Écrivez-nous un mot chaleureux…" maxlength="500"></textarea>
+
+          <!-- Anti-spam : ne pas remplir (invisible pour les visiteurs) -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="website">Ne pas remplir</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="button button-gold button-full" type="submit">Envoyer ma réponse</button>
+          <p class="form-hint">Votre réponse sera transmise directement aux mariés.</p>
+        </form>
+        <div id="thank-you" class="thank-you" role="status" aria-live="polite" hidden></div>
+      </div>
+    </section>
+
+    <section class="gallery-section section-pad" id="galerie">
+      <div class="section-heading">
+        <p class="eyebrow">QUELQUES INSPIRATIONS</p>
+        <h2>La beauté des instants</h2>
+        <p class="section-intro">En attendant de créer nos propres souvenirs avec vous…</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-item gallery-tall"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85" alt="Décoration de réception de mariage" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="photo-maries.png" alt="Portrait de Mohamed Moustapha et Hawa" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=85" alt="Table de mariage élégante" loading="lazy"></figure>
+        <figure class="gallery-item"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?auto=format&fit=crop&w=900&q=85" alt="Bouquet de fleurs pour un mariage" loading="lazy"></figure>
+        <figure class="gallery-item gallery-wide"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1200&q=85" alt="Ambiance festive d'une réception" loading="lazy"></figure>
+      </div>
+      <p class="gallery-note">Notre photo — entourés de nos proches, nous partagerons bientôt ces beaux souvenirs.</p>
+    </section>
+
+    <section class="closing section-pad">
+      <div class="closing-flower" aria-hidden="true">❦</div>
+      <p class="eyebrow">AVEC TOUT NOTRE AMOUR</p>
+      <h2>Nous avons hâte de<br><em>vous retrouver.</em></h2>
+      <p>Merci de faire partie de notre histoire.</p>
+      <div class="signature">Mohamed & Hawa</div>
+      <p class="closing-date">14 · 03 · 2027</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <span>Mohamed Moustapha Tounkara <span class="footer-amp">&</span> Hawa Traoré</span>
+    <span>Fait avec amour · 2027</span>
+  </footer>
+  <script src="qrcode.js"></script>
+  <script src="qr-card.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

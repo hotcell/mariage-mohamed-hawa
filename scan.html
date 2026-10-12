@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#244d3b">
+  <title>Vérification d'invitation — Mohamed &amp; Hawa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #244d3b;
+      --gold: #e6b93f;
+      --ivory: #f8f5ef;
+      --ink: #1d2b24;
+      --ok: #1f7a4d;
+      --no: #b4432f;
+      --unknown: #5f6661;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: var(--green);
+      font-family: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+    }
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--ivory);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+      text-align: center;
+    }
+    .brand {
+      padding: 16px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.3rem;
+      letter-spacing: .12em;
+      color: var(--green);
+    }
+    .brand span { color: var(--gold); }
+    .status { padding: 30px 20px 26px; color: #fff; background: var(--unknown); }
+    .status.ok { background: var(--ok); }
+    .status.no { background: var(--no); }
+    .icon { font-size: 4rem; line-height: 1; font-weight: 700; }
+    .label { margin: 12px 0 0; font-size: 1.15rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .body { padding: 24px 20px 28px; }
+    .name { margin: 0; font-size: 1.7rem; font-weight: 700; overflow-wrap: anywhere; }
+    .meta { margin: 10px 0 0; color: #5b6660; font-size: .95rem; }
+    .note { margin: 0; color: #5b6660; line-height: 1.5; }
+    button {
+      margin-top: 18px;
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--green);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <main class="card" aria-live="polite">
+    <div class="brand">M <span>&amp;</span> H</div>
+    <div id="status" class="status">
+      <div id="icon" class="icon" aria-hidden="true">…</div>
+      <p id="label" class="label">Vérification en cours</p>
+    </div>
+    <div id="body" class="body"><p class="note">Un instant…</p></div>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // La clé "anon" est publique par conception ; la sécurité repose sur la fonction verifier_invite.
+      var SUPABASE_URL = "https://qkzwfbwxfhsjmzhrzlrt.supabase.co";
+      var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFrendmYnd4Zmhzam16aHJ6bHJ0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE2NTkyNzUsImV4cCI6MjEwNzIzNTI3NX0.x-yrK-WJXSshurvQTm-XqNWgI80XxNan6DMPXDculVU";
+      var UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+      var statusEl = document.getElementById("status");
+      var iconEl = document.getElementById("icon");
+      var labelEl = document.getElementById("label");
+      var bodyEl = document.getElementById("body");
+
+      function el(tag, className, text) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text) node.textContent = text;
+        return node;
+      }
+
+      function show(kind, icon, label, nodes) {
+        statusEl.className = "status" + (kind ? " " + kind : "");
+        iconEl.textContent = icon;
+        labelEl.textContent = label;
+        bodyEl.replaceChildren.apply(bodyEl, nodes);
+      }
+
+      function showError() {
+        var retry = el("button", "", "Réessayer");
+        retry.type = "button";
+        retry.addEventListener("click", function () { window.location.reload(); });
+        show("", "!", "Vérification impossible", [
+          el("p", "note", "Impossible de joindre le serveur. Vérifiez la connexion internet puis réessayez."),
+          retry
+        ]);
+      }
+
+      function showResult(row) {
+        var present = String(row.presence || "").indexOf("Oui") === 0;
+        var meta = "Réf. " + row.numero;
+        if (row.date_confirmation) {
+          var d = new Date(row.date_confirmation);
+          if (!isNaN(d.getTime())) {
+            meta += " · réponse du " + d.toLocaleDateString("fr-FR", {
+              day: "numeric", month: "long", year: "numeric", timeZone: "Africa/Bamako"
+            });
+          }
+        }
+        show(
+          present ? "ok" : "no",
+          present ? "✓" : "✕",
+          present ? "Présence confirmée" : "A indiqué ne pas pouvoir venir",
+          [el("p", "name", row.nom), el("p", "meta", meta)]
+        );
+      }
+
+      var token = new URLSearchParams(window.location.search).get("t") || "";
+      if (!UUID.test(token)) {
+        show("", "?", "QR code non reconnu", [
+          el("p", "note", "Ce lien n'est pas une invitation valide. Orientez la personne vers l'accueil.")
+        ]);
+        return;
+      }
+
+      var controller = new AbortController();
+      var timer = setTimeout(function () { controller.abort(); }, 12000);
+
+      fetch(SUPABASE_URL + "/rest/v1/rpc/verifier_invite", {
+        method: "POST",
+        headers: {
+          "apikey": SUPABASE_ANON_KEY,
+          "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ p_token: token }),
+        signal: controller.signal
+      })
+        .then(function (response) {
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          return response.json();
+        })
+        .then(function (rows) {
+          if (Array.isArray(rows) && rows.length > 0) {
+            showResult(rows[0]);
+          } else {
+            show("", "?", "Aucune confirmation trouvée", [
+              el("p", "note", "Ce code ne correspond à aucune réponse enregistrée. Orientez la personne vers l'accueil.")
+            ]);
+          }
+        })
+        .catch(function (error) {
+          console.error("Vérification :", error);
+          showError();
+        })
+        .finally(function () { clearTimeout(timer); });
+    })();
+  </script>
+</body>
+</html>
